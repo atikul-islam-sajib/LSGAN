@@ -56,8 +56,6 @@ python /path/to/LSGAN/src/cli.py --help
 
 ## Core Script Usage With CUDA
 
-The core script sets up the necessary components for training the GAN. Here's a quick overview of what each part does:
-
 ```python
 from src.dataloader import Loader
 from src.discriminator import Discriminator
@@ -90,8 +88,6 @@ test.test()
 
 ## Core Script Usage With MPS
 
-The core script sets up the necessary components for training the GAN. Here's a quick overview of what each part does:
-
 ```python
 from src.dataloader import Loader
 from src.discriminator import Discriminator
@@ -120,8 +116,6 @@ test.test()
 
 ## Core Script Usage With CPU
 
-The core script sets up the necessary components for training the GAN. Here's a quick overview of what each part does:
-
 ```python
 from src.dataloader import Loader
 from src.discriminator import Discriminator
@@ -146,14 +140,13 @@ test = Test(
 latent_space=100, num_samples=20, device="cpu")
 
 test.test()
-
 ```
 
 This script initializes the data loader, Medical dataset, and prepares the data loader. It then sets up and starts the training process for the GAN model.
 
-## Training and Generating Images
+# Training and Generating Images
 
-### Training the GAN Model with CUDA
+#### Training the GAN Model with CUDA
 
 To train the GAN model with default parameters:
 
@@ -163,7 +156,7 @@ python /content/LSGAN/clf.py --image_path "/path/to/dataset.zip" --batch_size 64
 
 ```
 
-### Generating Images
+#### Generating Images
 
 To generate images using the trained model:
 
@@ -173,7 +166,7 @@ python /content/LSGAN/clf.py --test --latent_space 100 --num_samples 20 --device
 
 ```
 
-### Training the GAN Model with MPS
+#### Training the GAN Model with MPS
 
 To train the GAN model with default parameters:
 
@@ -183,7 +176,7 @@ python /content/LSGAN/clf.py --image_path "/path/to/dataset.zip" --batch_size 64
 
 ```
 
-### Generating Images
+#### Generating Images
 
 To generate images using the trained model:
 
@@ -193,7 +186,7 @@ python /content/LSGAN/clf.py --test --latent_space 100 --num_samples 20 --device
 
 ```
 
-### Training the GAN Model with CPU
+#### Training the GAN Model with CPU
 
 To train the GAN model with default parameters:
 
@@ -203,7 +196,7 @@ python /content/LSGAN/clf.py --image_path "/path/to/dataset.zip" --batch_size 64
 
 ```
 
-### Generating Images
+#### Generating Images
 
 To generate images using the trained model:
 
@@ -213,7 +206,7 @@ python /content/LSGAN/clf.py --test --latent_space 100 --num_samples 20 --device
 
 ```
 
-### Viewing Generated Images
+#### Viewing Generated Images
 
 Check the specified output directory for the generated images.
 
