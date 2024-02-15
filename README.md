@@ -54,7 +54,7 @@ python /path/to/LSGAN/src/cli.py --help
 - `--in_channels`: Define the channels of the image[RGB=3/GRAY=1].
 - `--folder`: A flag indicating whether to clean the training and model directories before starting.
 
-## Core Script Usage
+## Core Script Usage With CUDA
 
 The core script sets up the necessary components for training the GAN. Here's a quick overview of what each part does:
 
@@ -64,6 +64,7 @@ from src.discriminator import Discriminator
 from src.generator import Generator
 from src.trainer import Trainer
 from src.test import Test
+
 
 # Initialize the data loader with batch size
 loader = Loader(
@@ -78,9 +79,59 @@ trainer = Trainer(
 
 trainer.train()
 
+# Test the generated dataset with cuda
+
+test = Test(
+latent_space=100, num_samples=20, device="cuda")
+
+test.test()
+
+```
+
+## Core Script Usage With MPS
+
+The core script sets up the necessary components for training the GAN. Here's a quick overview of what each part does:
+
+```python
+from src.dataloader import Loader
+from src.discriminator import Discriminator
+from src.generator import Generator
+from src.trainer import Trainer
+from src.test import Test
 # Set up the trainer with learning rate, epochs, and latent space size with mps
 trainer = Trainer(
     image_size=64,input_channels=3,latent_space=100,lr=0.0002,epochs=100,device="mps")
+
+trainer.train()
+
+# Set up the trainer with learning rate, epochs, and latent space size with cpu
+trainer = Trainer(
+    image_size=64,input_channels=3,latent_space=100,lr=0.0002,epochs=100,device="mps")
+
+trainer.train()
+
+# Test the generated dataset with cuda
+
+test = Test(
+latent_space=100, num_samples=20, device="mps")
+
+test.test()
+```
+
+## Core Script Usage With CPU
+
+The core script sets up the necessary components for training the GAN. Here's a quick overview of what each part does:
+
+```python
+from src.dataloader import Loader
+from src.discriminator import Discriminator
+from src.generator import Generator
+from src.trainer import Trainer
+from src.test import Test
+
+# Set up the trainer with learning rate, epochs, and latent space size with mps
+trainer = Trainer(
+    image_size=64,input_channels=3,latent_space=100,lr=0.0002,epochs=100,device="cpu")
 
 trainer.train()
 
@@ -90,23 +141,12 @@ trainer = Trainer(
 
 trainer.train()
 
-# Test the generated dataset with cuda
-test = Test(
-    latent_space=100, num_samples=20, device="cuda")
-
-test.test()
-
-# Test the generated dataset with mps
-test = Test(
-    latent_space=100, num_samples=20, device="mps")
-
-test.test()
-
 # Test the generated dataset with cpu
 test = Test(
-    latent_space=100, num_samples=20, device="cpu")
+latent_space=100, num_samples=20, device="cpu")
 
 test.test()
+
 ```
 
 This script initializes the data loader, Medical dataset, and prepares the data loader. It then sets up and starts the training process for the GAN model.
@@ -118,7 +158,9 @@ This script initializes the data loader, Medical dataset, and prepares the data 
 To train the GAN model with default parameters:
 
 ```
+
 python /content/LSGAN/clf.py --image_path "/path/to/dataset.zip" --batch_size 64 --image_size 64 --in_channels 3 --latent_space 100 --lr 0.0002 --epochs 10 --device cuda --folder
+
 ```
 
 ### Generating Images
@@ -126,7 +168,9 @@ python /content/LSGAN/clf.py --image_path "/path/to/dataset.zip" --batch_size 64
 To generate images using the trained model:
 
 ```
+
 python /content/LSGAN/clf.py --test --latent_space 100 --num_samples 20 --device cuda
+
 ```
 
 ### Training the GAN Model with MPS
@@ -134,7 +178,9 @@ python /content/LSGAN/clf.py --test --latent_space 100 --num_samples 20 --device
 To train the GAN model with default parameters:
 
 ```
+
 python /content/LSGAN/clf.py --image_path "/path/to/dataset.zip" --batch_size 64 --image_size 64 --in_channels 3 --latent_space 100 --lr 0.0002 --epochs 10 --device mps --folder
+
 ```
 
 ### Generating Images
@@ -142,7 +188,9 @@ python /content/LSGAN/clf.py --image_path "/path/to/dataset.zip" --batch_size 64
 To generate images using the trained model:
 
 ```
+
 python /content/LSGAN/clf.py --test --latent_space 100 --num_samples 20 --device mps
+
 ```
 
 ### Training the GAN Model with CPU
@@ -150,7 +198,9 @@ python /content/LSGAN/clf.py --test --latent_space 100 --num_samples 20 --device
 To train the GAN model with default parameters:
 
 ```
+
 python /content/LSGAN/clf.py --image_path "/path/to/dataset.zip" --batch_size 64 --image_size 64 --in_channels 3 --latent_space 100 --lr 0.0002 --epochs 10 --device cuda --folder
+
 ```
 
 ### Generating Images
@@ -158,7 +208,9 @@ python /content/LSGAN/clf.py --image_path "/path/to/dataset.zip" --batch_size 64
 To generate images using the trained model:
 
 ```
+
 python /content/LSGAN/clf.py --test --latent_space 100 --num_samples 20 --device cpu
+
 ```
 
 ### Viewing Generated Images
@@ -166,8 +218,10 @@ python /content/LSGAN/clf.py --test --latent_space 100 --num_samples 20 --device
 Check the specified output directory for the generated images.
 
 ```
+
 from IPython.display import Image
 Image(filename='/content/LSGAN/outputs/final_output/fake_image.png')
+
 ```
 
 ## Documentation
@@ -194,3 +248,7 @@ For any inquiries or suggestions, feel free to reach out to [atikulislamsajib137
 
 - This project is a work in progress and subject to changes.
 - Feedback and suggestions are highly appreciated.
+
+```
+
+```
