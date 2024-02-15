@@ -1,12 +1,14 @@
 # LSGAN - Generative Adversarial Network for Custom Dataset: Least Squared GAN
 
-![LSGAN - Medical Image Dataset Generator: Gif file](./outputs/gif_file/image.gif)
-
 ![LSGAN - Medical Image Dataset Generator: Generated Image](./outputs/final_output/fake_image.png)
 
 ## Overview
 
 LSGAN (GAN-based Project for Synthesizing Gray-scale/RGB images) is a machine learning project focused on generating synthetic images using Generative Adversarial Networks (GANs). Specifically, it is designed to work with the Custom medical dataset, a large database of medical commonly used for training various image processing systems.
+
+## Demo - During training
+
+![LSGAN - Medical Image Dataset Generator: Gif file](./outputs/gif_file/image.gif)
 
 ## Features
 
