@@ -1,6 +1,6 @@
-![LSGAN - Medical Image Dataset Generator: Gif file](./outputs/gif_file/image.gif)
-
 # LSGAN - Generative Adversarial Network for Custom Dataset: Least Squared GAN
+
+![LSGAN - Medical Image Dataset Generator: Gif file](./outputs/gif_file/image.gif)
 
 ![LSGAN - Medical Image Dataset Generator: Generated Image](./outputs/final_output/fake_image.png)
 
