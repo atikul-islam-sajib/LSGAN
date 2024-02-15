@@ -18,6 +18,49 @@ logging.basicConfig(
 )
 
 if __name__ == "__main__":
+
+    """
+    The script you've provided serves as a command-line interface (CLI) for training and testing a Generative Adversarial Network (GAN) using PyTorch. It allows users to specify parameters for data loading, model training, and synthetic image generation through command-line arguments. Here's a breakdown of its functionality and usage:
+
+    ### Overview
+    - The script sets up a command-line parser to accept various arguments related to the dataset, model parameters, and training configuration.
+    - It uses the `Loader` class to preprocess the dataset and create a DataLoader.
+    - It initializes the `Trainer` class with user-specified or default parameters to train the GAN models.
+    - Optionally, it can run a test to generate synthetic images using the trained Generator model, controlled by the `--test` flag.
+
+    ### Key Arguments
+    - `--image_path`: Specifies the path to the zip file containing the dataset.
+    - `--batch_size`, `--image_size`: Control the size of batches and the dimensions of images during training.
+    - `--in_channels`, `--latent_space`: Define the number of input channels (e.g., 3 for RGB images) and the size of the latent space vector.
+    - `--num_samples`: Determines the number of synthetic images to generate during the test phase.
+    - `--lr`, `--epochs`, `--device`: Set the learning rate, number of training epochs, and the computation device (`cuda`, `mps`, or `cpu`).
+    - `--folder`: A flag indicating whether to clean the training and model directories before starting.
+    - `--test`: A flag to trigger the generation of synthetic images after training.
+
+    ### Execution Flow
+    1. **Data Loading**: If an image path is provided, it unzips the dataset, processes it, and creates a DataLoader.
+    2. **Model Training**: If all required arguments for training are provided, it trains the GAN models using the specified parameters.
+    3. **Testing**: If the `--test` flag is set, it generates synthetic images using the trained Generator model.
+
+    ### Example Usage
+    To train the model with custom settings:
+    ```shell
+    python script.py --image_path "/path/to/dataset.zip" --batch_size 64 --image_size 64 --in_channels 3 --latent_space 100 --lr 0.0002 --epochs 10 --device cuda --folder
+    ```
+    To generate synthetic images after training:
+    ```shell
+    python script.py --test --latent_space 100 --num_samples 20 --device cuda
+    ```
+
+    ### Logging
+    - The script logs key events (e.g., data loading, training start/end, testing start/end) to a log file at `./logs/cli.log`.
+
+    ### Error Handling
+    - It checks for the presence of required arguments and logs information or errors accordingly.
+    - It does not explicitly handle exceptions thrown by the underlying classes (`Loader`, `Trainer`, `Test`), which might be an area for improvement.
+
+    This CLI provides a flexible way to work with GANs, allowing for experimentation with different configurations without modifying the codebase.
+    """
     parser = argparse.ArgumentParser(description="Train the model with CLI".title())
 
     parser.add_argument(
