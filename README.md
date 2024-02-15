@@ -144,7 +144,7 @@ test.test()
 
 This script initializes the data loader, Medical dataset, and prepares the data loader. It then sets up and starts the training process for the GAN model.
 
-# Training and Generating Images
+## Training and Generating Images
 
 #### Training the GAN Model with CUDA
 
