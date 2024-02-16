@@ -24,27 +24,30 @@ from generator import Generator
 
 class Test:
     """
-    A class for testing a trained Generator model from a Generative Adversarial Network (GAN) to generate synthetic images and create a GIF animation from those images.
+        A class for testing a trained Generator model from a Generative Adversarial Network (GAN) to generate synthetic images and create a GIF animation from those images.
 
-    This class is designed to load a trained Generator model, generate a specified number of synthetic images from random latent space vectors, save these images, and optionally create a GIF animation from a sequence of generated images.
+        This class is designed to load a trained Generator model, generate a specified number of synthetic images from random latent space vectors, save these images, and optionally create a GIF animation from a sequence of generated images.
 
-    Parameters
-    ----------
-    latent_space : int, default=100
-        The dimensionality of the latent space vector from which images are generated.
-    num_samples : int, default=20
-        The number of synthetic images to generate.
-    device : str, default="mps"
-        The device to run the model on ("cuda" for GPU or "cpu" for CPU). "mps" is used for Apple Silicon GPUs.
+    For documenting parameters and attributes in a concise, table-like format within a Markdown or similar text documentation, you can follow this structure:
 
-    Attributes
-    ----------
-    best_model_path : str
-        Path to the directory containing the trained Generator model file.
-    generator : Generator
-        The Generator model loaded with trained weights for image generation.
-    device : torch.device
-        The PyTorch device context.
+    ### Parameters
+
+    | Parameter      | Type  | Default | Description                                                                                       |
+    |----------------|-------|---------|---------------------------------------------------------------------------------------------------|
+    | `latent_space` | int   | 100     | The dimensionality of the latent space vector from which images are generated.                    |
+    | `num_samples`  | int   | 20      | The number of synthetic images to generate.                                                       |
+    | `device`       | str   | "mps"   | The device to run the model on ("cuda" for GPU or "cpu" for CPU). "mps" is used for Apple GPUs.  |
+
+
+    ### Attributes
+
+    | Attribute        | Type           | Description                                                                 |
+    |------------------|----------------|-----------------------------------------------------------------------------|
+    | `best_model_path`| str            | Path to the directory containing the trained Generator model file.          |
+    | `generator`      | Generator      | The Generator model loaded with trained weights for image generation.       |
+    | `device`         | torch.device   | The PyTorch device context, determining where the model computations occur. |
+
+    This structured format provides a clear and accessible overview of the parameters and attributes, making it easier for readers to understand the key configurations and components of a class or function, especially when viewed in environments that support Markdown rendering.
 
     Methods
     -------
@@ -57,16 +60,16 @@ class Test:
 
     Examples
     --------
-    >>> test = Test(latent_space=100, num_samples=20, device="cuda")
-    >>> test.test()
+        >>> test = Test(latent_space=100, num_samples=20, device="cuda")
+        >>> test.test()
     This will load the trained Generator model, generate 20 synthetic images, save them, and if possible, create a GIF animation of the generated images.
 
     Raises
     ------
-    FileNotFoundError
-        If the paths specified in the configuration for saving images or GIFs do not exist.
-    Exception
-        For errors encountered during image generation or GIF creation.
+        FileNotFoundError
+            If the paths specified in the configuration for saving images or GIFs do not exist.
+        Exception
+            For errors encountered during image generation or GIF creation.
     """
 
     def __init__(self, latent_space=100, num_samples=20, device="mps"):

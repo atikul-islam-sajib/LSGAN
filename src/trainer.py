@@ -33,42 +33,33 @@ class Trainer:
     images during training to visualize progress.
 
     Parameters
-    ----------
-    image_size : int, default=64
-        The size of the images to generate. Typically a power of 2.
-    input_channels : int, default=3
-        The number of channels in the images to generate. For example, 3 for RGB images.
-    latent_space : int, default=50
-        The dimensionality of the latent space from which the generator creates images.
-    lr : float, default=0.0002
-        The learning rate for the Adam optimizers.
-    epochs : int, default=100
-        The number of training epochs.
-    beta1 : float, default=0.5
-        The beta1 hyperparameter for the Adam optimizers.
-    beta2 : float, default=0.999
-        The beta2 hyperparameter for the Adam optimizers.
-    device : str, default="mps"
-        The device to run the training on ("cuda" for GPU or "cpu" for CPU). "mps" is used for Apple Silicon GPUs.
-    display : bool, default=True
-        Whether to print progress during training.
-    folder : bool, default=True
-        Whether to clean the folder specified for saving generated images before starting training.
+
+    | Parameter       | Type    | Default  | Description                                                                                          |
+    |-----------------|---------|----------|------------------------------------------------------------------------------------------------------|
+    | `image_size`    | int     | 64       | The size of the images to generate. Typically a power of 2.                                         |
+    | `input_channels`| int     | 3        | The number of channels in the images to generate. For example, 3 for RGB images.                    |
+    | `latent_space`  | int     | 50       | The dimensionality of the latent space from which the generator creates images.                     |
+    | `lr`            | float   | 0.0002   | The learning rate for the Adam optimizers.                                                          |
+    | `epochs`        | int     | 100      | The number of training epochs.                                                                      |
+    | `beta1`         | float   | 0.5      | The beta1 hyperparameter for the Adam optimizers.                                                   |
+    | `beta2`         | float   | 0.999    | The beta2 hyperparameter for the Adam optimizers.                                                   |
+    | `device`        | str     | "mps"    | The device to run the training on ("cuda" for GPU or "cpu" for CPU). "mps" is used for Apple GPUs.  |
+    | `display`       | bool    | True     | Whether to print progress during training.                                                          |
+    | `folder`        | bool    | True     | Whether to clean the folder specified for saving generated images before starting training.        |
+
 
     Attributes
-    ----------
-    net_G : Generator
-        The generator model.
-    net_D : Discriminator
-        The discriminator model.
-    dataloader_path : str
-        The path to the dataloader object, used to load training data.
-    criterion : torch.nn.Module
-        The loss function used for training.
-    optimizer_G : torch.optim.Optimizer
-        The optimizer for the generator.
-    optimizer_D : torch.optim.Optimizer
-        The optimizer for the discriminator.
+
+    | Attribute        | Type                  | Description                                                                 |
+    |------------------|-----------------------|-----------------------------------------------------------------------------|
+    | `net_G`          | Generator             | The generator model responsible for generating images from latent space.    |
+    | `net_D`          | Discriminator         | The discriminator model that classifies images as real or generated.        |
+    | `dataloader_path`| str                   | The path to the DataLoader object, used to load training data.              |
+    | `criterion`      | torch.nn.Module       | The loss function used for training, measuring the discrepancy between      |
+    |                  |                       | predicted values and targets.                                               |
+    | `optimizer_G`    | torch.optim.Optimizer | The optimizer for updating the generator's weights.                         |
+    | `optimizer_D`    | torch.optim.Optimizer | The optimizer for updating the discriminator's weights.                      |
+
 
     Methods
     -------
@@ -84,8 +75,8 @@ class Trainer:
 
     Examples
     --------
-    >>> trainer = Trainer(image_size=64, input_channels=3, latent_space=100, epochs=10, device='cuda')
-    >>> trainer.train()
+        >>> trainer = Trainer(image_size=64, input_channels=3, latent_space=100, epochs=10, device='cuda')
+        >>> trainer.train()
     This will train the GAN models for 10 epochs, periodically saving checkpoints and generating images to
     visualize the generator's progress.
 
@@ -242,7 +233,7 @@ class Trainer:
         """
         Runs the training loop, updating the generator and discriminator models based on the loss from their
         predictions on real and generated images.
-        ""
+        """
         dataloader = self.load_data()
 
         for epoch in range(self.epochs):

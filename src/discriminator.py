@@ -18,55 +18,40 @@ from utils import total_params, model_info
 
 class Discriminator(nn.Module):
     """
-    A discriminator model for a Generative Adversarial Network (GAN), designed to distinguish
-    between real and generated images.
+    A discriminator model within the Generative Adversarial Network (GAN) framework, tasked with distinguishing between real and synthetic images.
 
-    This model acts as the adversarial counterpart to a generator model in GAN architecture, aiming
-    to classify images as real or fake. It is implemented as a sequence of convolutional layers,
-    optionally followed by batch normalization and LeakyReLU activation, culminating in a single
-    output node representing the probability of the input image being real.
+    Constructed from a series of convolutional layers, this model evaluates the authenticity of input images, leveraging batch normalization and LeakyReLU activations, and finalizing with a single output node to indicate the likelihood of an image being real.
 
-    Parameters
-    ----------
-    image_size : int, default=64
-        Defines the depth of the first convolutional layer. Typically, this is set to match the
-        dimensionality of the images being discriminated. The depth of subsequent layers is scaled
-        from this initial value.
-    input_channels : int, default=3
-        The number of channels in the input images. For example, this should be 3 for RGB images
-        and 1 for grayscale images.
+    ### Parameters
 
-    Attributes
-    ----------
-    layers_config : list of tuple
-        A configuration list where each tuple defines the parameters for a layer in the model.
-        These parameters include the number of input channels, output channels, kernel size, stride,
-        padding, slope of LeakyReLU, and a boolean indicating whether batch normalization should be
-        applied.
-    model : nn.Sequential
-        The sequential model comprising all layers specified in `layers_config`.
+    | Parameter        | Type | Default | Description                                                                 |
+    |------------------|------|---------|-----------------------------------------------------------------------------|
+    | `image_size`     | int  | 64      | Initial layer depth, typically aligned with input image dimensionality.    |
+    | `input_channels` | int  | 3       | Channel count for input images (3 for RGB, 1 for grayscale).                |
 
-    Methods
-    -------
-    forward(x):
-        Defines the forward pass of the discriminator.
+    ### Attributes
 
-    Notes
-    -----
-    The discriminator is a critical component of GANs, providing feedback to the generator on the
-    quality of its output. It is trained to minimize the probability assigned to generated images
-    while maximizing the probability assigned to real images.
+    | Attribute      | Type          | Description                                                                 |
+    |----------------|---------------|-----------------------------------------------------------------------------|
+    | `layers_config`| list of tuples| Layer configurations detailing input/output channels, kernel size, etc.     |
+    | `model`        | nn.Sequential | Composed model from `layers_config`, representing the discriminator's architecture. |
 
-    Examples
-    --------
-    >>> discriminator = Discriminator(image_size=64, input_channels=3)
-    >>> print(discriminator)
-    Discriminator(
-        (model): Sequential(...)
-    )
+    ### Methods
 
-    The model can then be used in the training loop of a GAN, where it will be trained to distinguish
-    between real and fake images.
+    - `forward(x)`: Executes the discriminator's forward pass, inputting an image tensor and outputting its realness probability.
+
+    ### Notes
+
+    As GANs' evaluative mechanism, the discriminator assesses generator output quality, aiming to accurately identify generated content, thereby guiding the generator's improvements.
+
+    ### Examples
+
+    ```python
+    discriminator = Discriminator(image_size=64, input_channels=3)
+    print(discriminator)
+    ```
+
+    This instantiation creates a discriminator for 64x64 RGB images, ready to participate in GAN training to discern real from generated images.
     """
 
     def __init__(self, image_size=64, input_channels=3):

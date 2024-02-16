@@ -18,53 +18,41 @@ from utils import total_params, model_info
 
 class Generator(nn.Module):
     """
-    A generator model for a Generative Adversarial Network (GAN) that generates images from a latent space.
+    A generator model within a Generative Adversarial Network (GAN) framework for synthesizing images from latent space vectors.
 
-    This model takes a latent space vector as input and outputs an image. It is comprised of a series
-    of transposed convolutional layers that progressively upsample the input vector to the desired
-    output image size and depth. Batch normalization and ReLU activations are used between layers,
-    with a Tanh activation at the output to generate images with pixel values in the range [-1, 1].
+    Utilizes transposed convolutional layers for upscaling latent vectors to the target image size and depth, incorporating batch normalization and ReLU activations, and employing Tanh activation for the final layer output.
 
-    Parameters
-    ----------
-    latent_space : int, default=50
-        The dimensionality of the latent space vector from which images are generated.
-    image_size : int, default=64
-        Defines the depth of the output images. This value is scaled throughout the network to
-        determine the depth of intermediate layers.
-    in_channels : int, default=1
-        The number of channels in the output images. For example, this should be 3 for RGB images
-        and 1 for grayscale images.
+    ### Parameters
 
-    Attributes
-    ----------
-    layers_config : list of tuple
-        A configuration list where each tuple defines the parameters for a layer in the model.
-        These parameters include the number of input channels, output channels, kernel size, stride,
-        padding, and a boolean indicating whether batch normalization should be applied.
-    model : nn.Sequential
-        The sequential model comprising all layers specified in `layers_config`.
+    | Parameter      | Type | Default | Description                                                               |
+    |----------------|------|---------|---------------------------------------------------------------------------|
+    | `latent_space` | int  | 50      | Dimensionality of the latent space vector.                                |
+    | `image_size`   | int  | 64      | Target depth of output images, influencing intermediate layer scaling.    |
+    | `in_channels`  | int  | 1       | Number of channels in output images (e.g., 3 for RGB, 1 for grayscale).   |
 
-    Methods
-    -------
-    forward(x):
-        Defines the forward pass of the generator.
+    ### Attributes
 
-    Notes
-    -----
-    The generator is a fundamental component of GANs, tasked with creating images that are
-    indistinguishable from real images to the discriminator. It learns to map points from the
-    latent space to the space of real images.
+    | Attribute      | Type            | Description                                                               |
+    |----------------|-----------------|---------------------------------------------------------------------------|
+    | `layers_config`| list of tuples  | Configuration for each model layer, specifying dimensions and operations. |
+    | `model`        | nn.Sequential   | Sequential model built from `layers_config`.                              |
 
-    Examples
-    --------
-    >>> generator = Generator(latent_space=100, image_size=64, in_channels=3)
-    >>> print(generator)
-    Generator(
-        (model): Sequential(...)
-    )
+    ### Methods
 
-    The model can be used within a GAN framework to generate images from random noise vectors.
+    - `forward(x)`: Implements the forward pass, transforming latent space vectors into images.
+
+    ### Notes
+
+    The generator is key for GANs, designed to produce images indistinguishable from real ones, thus learning the distribution of real image data.
+
+    ### Examples
+
+    ```python
+    generator = Generator(latent_space=100, image_size=64, in_channels=3)
+    print(generator)
+    ```
+
+    This example initializes the generator with a 100-dimensional latent space, outputting 64x64 images with 3 channels (RGB), showcasing its structure.
     """
 
     def __init__(self, latent_space=50, image_size=64, in_channels=1):

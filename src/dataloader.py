@@ -29,43 +29,45 @@ class Loader:
     for training deep learning models. It requires the dataset to be in a zip file format and will process
     the images to the specified size and batch size for training.
 
-    Parameters
-    ----------
-    image_path : str, default=None
-        The path to the zip file containing the image dataset.
-    batch_size : int, default=64
-        The number of images to process in each batch.
-    image_size : int, default=64
-        The size (width and height) to which each image will be resized.
 
-    Attributes
-    ----------
-    to_extract : str
-        The path where the dataset will be extracted. It is defined by the RAW_PATH variable from the config.
-    to_processed : str
-        The path where the processed data will be saved. It is defined by the PROCESSED_PATH variable from the config.
+    ### Parameters
+
+    | Parameter    | Type | Default | Description                                                    |
+    |--------------|------|---------|----------------------------------------------------------------|
+    | `image_path` | str  | None    | The path to the zip file containing the image dataset.        |
+    | `batch_size` | int  | 64      | The number of images to process in each batch.                 |
+    | `image_size` | int  | 64      | The size (width and height) to which each image will be resized. |
+
+    ### Attributes
+
+    | Attribute    | Type | Description                                                                                   |
+    |--------------|------|-----------------------------------------------------------------------------------------------|
+    | `to_extract` | str  | The path where the dataset will be extracted. Defined by the `RAW_PATH` variable from the config. |
+    | `to_processed` | str  | The path where the processed data will be saved. Defined by the `PROCESSED_PATH` variable from the config. |
+
+    This table format offers a clear and concise way to present essential information about parameters and attributes, making it easier for readers to quickly grasp the configuration and capabilities of your class or function.
 
     Methods
     -------
-    unzip_folder():
-        Extracts the dataset from the zip file to the specified path.
-    create_dataloader():
-        Creates a PyTorch DataLoader after preprocessing the dataset.
+        unzip_folder():
+            Extracts the dataset from the zip file to the specified path.
+        create_dataloader():
+            Creates a PyTorch DataLoader after preprocessing the dataset.
 
     Notes
     -----
-    This class is designed to be used within a specific project structure and requires a configuration
-    file (`config.py`) that specifies `RAW_PATH` and `PROCESSED_PATH` variables for dataset management.
-    It utilizes torchvision transforms for image preprocessing.
+        This class is designed to be used within a specific project structure and requires a configuration
+        file (`config.py`) that specifies `RAW_PATH` and `PROCESSED_PATH` variables for dataset management.
+        It utilizes torchvision transforms for image preprocessing.
 
     Examples
     --------
-    >>> from loader import Loader
-    >>> # Assuming 'dataset.zip' is your dataset and it's located in the current directory.
-    >>> loader = Loader(image_path='dataset.zip', batch_size=32, image_size=128)
-    >>> loader.unzip_folder()
-    >>> loader.create_dataloader()
-    >>> # Now, the DataLoader is ready and saved as 'dataloader.pkl' in the processed data path.
+        >>> from loader import Loader
+        >>> # Assuming 'dataset.zip' is your dataset and it's located in the current directory.
+        >>> loader = Loader(image_path='dataset.zip', batch_size=32, image_size=128)
+        >>> loader.unzip_folder()
+        >>> loader.create_dataloader()
+        >>> # Now, the DataLoader is ready and saved as 'dataloader.pkl' in the processed data path.
     """
 
     def __init__(self, image_path=None, batch_size=64, image_size=64):

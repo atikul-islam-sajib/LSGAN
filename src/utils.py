@@ -11,10 +11,10 @@ def create_pickle(data=None, filename=None):
 
     Parameters
     ----------
-    data : any serializable object, optional
-        The data to be saved. If None, the function raises a ValueError.
-    filename : str, optional
-        The path and filename where the data should be saved. If None, the function raises a ValueError.
+        data : any serializable object, optional
+            The data to be saved. If None, the function raises a ValueError.
+        filename : str, optional
+            The path and filename where the data should be saved. If None, the function raises a ValueError.
 
     Raises
     ------
@@ -33,8 +33,8 @@ def total_params(model=None):
 
     Parameters
     ----------
-    model : torch.nn.Module, optional
-        The model from which to count parameters. If None, the function raises an Exception.
+        model : torch.nn.Module, optional
+            The model from which to count parameters. If None, the function raises an Exception.
 
     Returns
     -------
@@ -58,8 +58,8 @@ def model_info(model=None):
 
     Parameters
     ----------
-    model : torch.nn.Module, optional
-        The model to inspect. If None, the function raises a ValueError.
+        model : torch.nn.Module, optional
+            The model to inspect. If None, the function raises a ValueError.
 
     Yields
     ------
@@ -86,8 +86,8 @@ def weight_init(m=None):
 
     Parameters
     ----------
-    m : torch.nn.Module, optional
-        The module to initialize. If None, the function raises a ValueError.
+        m : torch.nn.Module, optional
+            The module to initialize. If None, the function raises a ValueError.
 
     Raises
     ------
@@ -111,8 +111,8 @@ def device_init(device="mps"):
 
     Parameters
     ----------
-    device : str, default="mps"
-        The preferred device to use ("cuda", "mps", or "cpu").
+        device : str, default="mps"
+            The preferred device to use ("cuda", "mps", or "cpu").
 
     Returns
     -------
@@ -133,8 +133,8 @@ def clean_folder(clean=True):
 
     Parameters
     ----------
-    clean : bool, default=True
-        Whether to clean the folders specified by `CHECKPOINT_PATH` and `BEST_MODEL_PATH`.
+        clean : bool, default=True
+            Whether to clean the folders specified by `CHECKPOINT_PATH` and `BEST_MODEL_PATH`.
 
     Notes
     -----
