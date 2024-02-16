@@ -56,6 +56,21 @@ python /path/to/LSGAN/src/cli.py --help
 | `--in_channels`   | Define the channels of the image (RGB=3/GRAY=1).             | N/A           |
 | `--folder`        | A flag indicating whether to clean the training and model directories before starting. | N/A |
 
+
+## Training and Generating Images
+
+#### Training the GAN Model with CUDA, MPS, CPU
+
+| **Device** | **Process**                                | **Command**                                                                                                                                 | **Parameters**                                                                                      |
+|------------|--------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| **CUDA**   | **Training the GAN Model with CUDA**       | `python /content/LSGAN/clf.py --image_path "/path/to/dataset.zip" --batch_size 64 --image_size 64 --in_channels 3 --latent_space 100 --lr 0.0002 --epochs 10 --device cuda --folder` | - `image_path`: Path to dataset <br> - `batch_size`: 64 <br> - `image_size`: 64 <br> - `in_channels`: 3 <br> - `latent_space`: 100 <br> - `lr`: 0.0002 <br> - `epochs`: 10 <br> - `device`: cuda <br> - `folder`: Clean directories before start |
+| **CUDA**   | **Generating Images with CUDA**            | `python /content/LSGAN/clf.py --test --latent_space 100 --num_samples 20 --device cuda`                                                      | - `test`: Indicates testing mode <br> - `latent_space`: 100 <br> - `num_samples`: 20 <br> - `device`: cuda                     |
+| **MPS**    | **Training the GAN Model with MPS**        | `python /content/LSGAN/clf.py --image_path "/path/to/dataset.zip" --batch_size 64 --image_size 64 --in_channels 3 --latent_space 100 --lr 0.0002 --epochs 10 --device mps --folder` | - `image_path`: Path to dataset <br> - `batch_size`: 64 <br> - `image_size`: 64 <br> - `in_channels`: 3 <br> - `latent_space`: 100 <br> - `lr`: 0.0002 <br> - `epochs`: 10 <br> - `device`: mps <br> - `folder`: Clean directories before start |
+| **MPS**    | **Generating Images with MPS**             | `python /content/LSGAN/clf.py --test --latent_space 100 --num_samples 20 --device mps`                                                      | - `test`: Indicates testing mode <br> - `latent_space`: 100 <br> - `num_samples`: 20 <br> - `device`: mps                     |
+| **CPU**    | **Training the GAN Model with CPU**        | `python /content/LSGAN/clf.py --image_path "/path/to/dataset.zip" --batch_size 64 --image_size 64 --in_channels 3 --latent_space 100 --lr 0.0002 --epochs 10 --device cpu --folder` | - `image_path`: Path to dataset <br> - `batch_size`: 64 <br> - `image_size`: 64 <br> - `in_channels`: 3 <br> - `latent_space`: 100 <br> - `lr`: 0.0002 <br> - `epochs`: 10 <br> - `device`: cpu <br> - `folder`: Clean directories before start |
+| **CPU**    | **Generating Images with CPU**             | `python /content/LSGAN/clf.py --test --latent_space 100 --num_samples 20 --device cpu`                                                      | - `test`: Indicates testing mode <br> - `latent_space`: 100 <br> - `num_samples`: 20 <br> - `device`: cpu                     |
+
+
 ## Core Script Usage With CUDA
 
 ```python
@@ -143,21 +158,6 @@ latent_space=100, num_samples=20, device="cpu")
 
 test.test()
 ```
-
-This script initializes the data loader, Medical dataset, and prepares the data loader. It then sets up and starts the training process for the GAN model.
-
-## Training and Generating Images
-
-#### Training the GAN Model with CUDA, MPS, CPU
-
-| **Device** | **Process**                                | **Command**                                                                                                                                 | **Parameters**                                                                                      |
-|------------|--------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| **CUDA**   | **Training the GAN Model with CUDA**       | `python /content/LSGAN/clf.py --image_path "/path/to/dataset.zip" --batch_size 64 --image_size 64 --in_channels 3 --latent_space 100 --lr 0.0002 --epochs 10 --device cuda --folder` | - `image_path`: Path to dataset <br> - `batch_size`: 64 <br> - `image_size`: 64 <br> - `in_channels`: 3 <br> - `latent_space`: 100 <br> - `lr`: 0.0002 <br> - `epochs`: 10 <br> - `device`: cuda <br> - `folder`: Clean directories before start |
-| **CUDA**   | **Generating Images with CUDA**            | `python /content/LSGAN/clf.py --test --latent_space 100 --num_samples 20 --device cuda`                                                      | - `test`: Indicates testing mode <br> - `latent_space`: 100 <br> - `num_samples`: 20 <br> - `device`: cuda                     |
-| **MPS**    | **Training the GAN Model with MPS**        | `python /content/LSGAN/clf.py --image_path "/path/to/dataset.zip" --batch_size 64 --image_size 64 --in_channels 3 --latent_space 100 --lr 0.0002 --epochs 10 --device mps --folder` | - `image_path`: Path to dataset <br> - `batch_size`: 64 <br> - `image_size`: 64 <br> - `in_channels`: 3 <br> - `latent_space`: 100 <br> - `lr`: 0.0002 <br> - `epochs`: 10 <br> - `device`: mps <br> - `folder`: Clean directories before start |
-| **MPS**    | **Generating Images with MPS**             | `python /content/LSGAN/clf.py --test --latent_space 100 --num_samples 20 --device mps`                                                      | - `test`: Indicates testing mode <br> - `latent_space`: 100 <br> - `num_samples`: 20 <br> - `device`: mps                     |
-| **CPU**    | **Training the GAN Model with CPU**        | `python /content/LSGAN/clf.py --image_path "/path/to/dataset.zip" --batch_size 64 --image_size 64 --in_channels 3 --latent_space 100 --lr 0.0002 --epochs 10 --device cpu --folder` | - `image_path`: Path to dataset <br> - `batch_size`: 64 <br> - `image_size`: 64 <br> - `in_channels`: 3 <br> - `latent_space`: 100 <br> - `lr`: 0.0002 <br> - `epochs`: 10 <br> - `device`: cpu <br> - `folder`: Clean directories before start |
-| **CPU**    | **Generating Images with CPU**             | `python /content/LSGAN/clf.py --test --latent_space 100 --num_samples 20 --device cpu`                                                      | - `test`: Indicates testing mode <br> - `latent_space`: 100 <br> - `num_samples`: 20 <br> - `device`: cpu                     |
 
 ## Documentation
 
