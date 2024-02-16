@@ -43,16 +43,18 @@ python /path/to/LSGAN/src/cli.py --help
 
 ### Options
 
-- `--batch_size BATCH_SIZE`: Set the batch size for the dataloader. (Default: specify if there's one)
-- `--image_path`: Define the Custom dataset.
-- `--epochs EPOCHS`: Set the number of training epochs.
-- `--latent_space LATENT_SPACE`: Define the size of the latent space for the model.
-- `--lr LR`: Specify the learning rate for training the model.
-- `--num_samples SAMPLES`: Determine the number of samples to generate after training.
-- `--test`: Run tests with synthetic data to validate model performance.
-- `--device`: Train the model with CPU, GPU, MPS.
-- `--in_channels`: Define the channels of the image[RGB=3/GRAY=1].
-- `--folder`: A flag indicating whether to clean the training and model directories before starting.
+| Option            | Description                                                  | Default Value |
+|-------------------|--------------------------------------------------------------|---------------|
+| `--batch_size`    | Set the batch size for the dataloader.                       | Specify if there's one |
+| `--image_path`    | Define the Custom dataset.                                   | N/A           |
+| `--epochs`        | Set the number of training epochs.                           | N/A           |
+| `--latent_space`  | Define the size of the latent space for the model.           | N/A           |
+| `--lr`            | Specify the learning rate for training the model.            | N/A           |
+| `--num_samples`   | Determine the number of samples to generate after training.  | N/A           |
+| `--test`          | Run tests with synthetic data to validate model performance. | N/A           |
+| `--device`        | Train the model with CPU, GPU, MPS.                          | N/A           |
+| `--in_channels`   | Define the channels of the image (RGB=3/GRAY=1).             | N/A           |
+| `--folder`        | A flag indicating whether to clean the training and model directories before starting. | N/A |
 
 ## Core Script Usage With CUDA
 
@@ -146,76 +148,14 @@ This script initializes the data loader, Medical dataset, and prepares the data 
 
 ## Training and Generating Images
 
-#### Training the GAN Model with CUDA
+#### Training the GAN Model with CUDA, MPS, CPU
 
-To train the GAN model with default parameters:
-
-```
-
-python /content/LSGAN/clf.py --image_path "/path/to/dataset.zip" --batch_size 64 --image_size 64 --in_channels 3 --latent_space 100 --lr 0.0002 --epochs 10 --device cuda --folder
-
-```
-
-#### Generating Images
-
-To generate images using the trained model:
-
-```
-
-python /content/LSGAN/clf.py --test --latent_space 100 --num_samples 20 --device cuda
-
-```
-
-#### Training the GAN Model with MPS
-
-To train the GAN model with default parameters:
-
-```
-
-python /content/LSGAN/clf.py --image_path "/path/to/dataset.zip" --batch_size 64 --image_size 64 --in_channels 3 --latent_space 100 --lr 0.0002 --epochs 10 --device mps --folder
-
-```
-
-#### Generating Images
-
-To generate images using the trained model:
-
-```
-
-python /content/LSGAN/clf.py --test --latent_space 100 --num_samples 20 --device mps
-
-```
-
-#### Training the GAN Model with CPU
-
-To train the GAN model with default parameters:
-
-```
-
-python /content/LSGAN/clf.py --image_path "/path/to/dataset.zip" --batch_size 64 --image_size 64 --in_channels 3 --latent_space 100 --lr 0.0002 --epochs 10 --device cuda --folder
-
-```
-
-#### Generating Images
-
-To generate images using the trained model:
-
-```
-
-python /content/LSGAN/clf.py --test --latent_space 100 --num_samples 20 --device cpu
-
-```
-
-#### Viewing Generated Images
-
-Check the specified output directory for the generated images.
-
-```
-
-from IPython.display import Image
-Image(filename='/content/LSGAN/outputs/final_output/fake_image.png')
-
-```
+| **Device** | **Process**                              | **Command**                                                                                                                                 | **Parameters**                                                                                      |
+|------------|------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| **MPS**    | **Training the GAN Model with MPS**      | `python /content/LSGAN/clf.py --image_path "/path/to/dataset.zip" --batch_size 64 --image_size 64 --in_channels 3 --latent_space 100 --lr 0.0002 --epochs 10 --device mps --folder` | - `image_path`: Path to dataset <br> - `batch_size`: 64 <br> - `image_size`: 64 <br> - `in_channels`: 3 <br> - `latent_space`: 100 <br> - `lr`: 0.0002 <br> - `epochs`: 10 <br> - `device`: mps <br> - `folder`: Clean directories before start |
+| **MPS**    | **Generating Images with MPS**           | `python /content/LSGAN/clf.py --test --latent_space 100 --num_samples 20 --device mps`                                                      | - `test`: Indicates testing mode <br> - `latent_space`: 100 <br> - `num_samples`: 20 <br> - `device`: mps                     |
+| **CPU**    | **Training the GAN Model with CPU**      | `python /content/LSGAN/clf.py --image_path "/path/to/dataset.zip" --batch_size 64 --image_size 64 --in_channels 3 --latent_space 100 --lr 0.0002 --epochs 10 --device cpu --folder` | - `image_path`: Path to dataset <br> - `batch_size`: 64 <br> - `image_size`: 64 <br> - `in_channels`: 3 <br> - `latent_space`: 100 <br> - `lr`: 0.0002 <br> - `epochs`: 10 <br> - `device`: cpu <br> - `folder`: Clean directories before start |
+| **CPU**    | **Generating Images with CPU**           | `python /content/LSGAN/clf.py --test --latent_space 100 --num_samples 20 --device cpu`                                                      | - `test`: Indicates testing mode <br> - `latent_space`: 100 <br> - `num_samples`: 20 <br> - `device`: cpu                     |
 
 ## Documentation
 
@@ -245,3 +185,20 @@ For any inquiries or suggestions, feel free to reach out to [atikulislamsajib137
 ```
 
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
