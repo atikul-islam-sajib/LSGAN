@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Command Line - LSGAN - Least Squares Generative Adversarial Networks</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Command Line";
+        var mkdocs_page_input_path = "cli.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> LSGAN - Least Squares Generative Adversarial Networks
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dataloader/">DataLoader</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../generator/">Generator</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../discriminator/">Discriminator</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../trainer/">Trainer</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../test/">Test</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Command Line</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#key-arguments">Key Arguments</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#execution-flow">Execution Flow</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#example-usage">Example Usage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#logging">Logging</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#error-handling">Error Handling</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../utils/">Utils</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">LSGAN - Least Squares Generative Adversarial Networks</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Command Line</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p>To present the detailed documentation of your CLI script in a structured and visually appealing manner suitable for Markdown or similar documentation formats, we can organize the information into sections with tables and lists to enhance readability and accessibility. Here's how you could structure it:</p>
+<h2 id="cli-for-gan-training-and-testing">CLI for GAN Training and Testing</h2>
+<p>The script serves as a command-line interface for training and testing Generative Adversarial Networks (GANs) using PyTorch, offering customization through various command-line arguments.</p>
+<h3 id="overview">Overview</h3>
+<ul>
+<li><strong>Command-Line Parser</strong>: Accepts arguments for dataset management, model parameters, and training configurations.</li>
+<li><strong>Data Processing</strong>: Utilizes <code>Loader</code> to preprocess datasets into a DataLoader.</li>
+<li><strong>Model Training</strong>: Initializes <code>Trainer</code> with specified parameters for GAN model training.</li>
+<li><strong>Synthetic Image Generation</strong>: Optionally generates synthetic images post-training with the <code>--test</code> flag.</li>
+</ul>
+<h3 id="key-arguments">Key Arguments</h3>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--image_path</code></td>
+<td>Path to the dataset zip file.</td>
+</tr>
+<tr>
+<td><code>--batch_size</code></td>
+<td>Size of batches during training.</td>
+</tr>
+<tr>
+<td><code>--image_size</code></td>
+<td>Dimensions of images for training.</td>
+</tr>
+<tr>
+<td><code>--in_channels</code></td>
+<td>Number of input channels (e.g., 3 for RGB).</td>
+</tr>
+<tr>
+<td><code>--latent_space</code></td>
+<td>Dimensionality of latent space vector.</td>
+</tr>
+<tr>
+<td><code>--num_samples</code></td>
+<td>Number of synthetic images to generate in test phase.</td>
+</tr>
+<tr>
+<td><code>--lr</code></td>
+<td>Learning rate for the Adam optimizer.</td>
+</tr>
+<tr>
+<td><code>--epochs</code></td>
+<td>Number of training epochs.</td>
+</tr>
+<tr>
+<td><code>--device</code></td>
+<td>Computation device (<code>cuda</code>, <code>mps</code>, or <code>cpu</code>).</td>
+</tr>
+<tr>
+<td><code>--folder</code></td>
+<td>Flag to clean training/model directories before starting.</td>
+</tr>
+<tr>
+<td><code>--test</code></td>
+<td>Flag to trigger synthetic image generation post-training.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="execution-flow">Execution Flow</h3>
+<ol>
+<li><strong>Data Loading</strong>: Processes and creates a DataLoader from the dataset specified by <code>--image_path</code>.</li>
+<li><strong>Model Training</strong>: Trains GAN models with provided parameters.</li>
+<li><strong>Testing</strong>: Generates synthetic images using the trained Generator model if <code>--test</code> is set.</li>
+</ol>
+<h3 id="example-usage">Example Usage</h3>
+<ul>
+<li><strong>Training the Model</strong>:
+  <code>shell
+  python script.py --image_path "/path/to/dataset.zip" --batch_size 64 --image_size 64 --in_channels 3 --latent_space 100 --lr 0.0002 --epochs 10 --device cuda --folder</code></li>
+<li><strong>Generating Synthetic Images</strong>:
+  <code>shell
+  python script.py --test --latent_space 100 --num_samples 20 --device cuda</code></li>
+</ul>
+<h3 id="logging">Logging</h3>
+<p>Logs key events to <code>./logs/cli.log</code>, including data loading, training start/end, and testing phases.</p>
+<h3 id="error-handling">Error Handling</h3>
+<p>Checks for the presence of required arguments and logs accordingly. Improvement areas include explicit exception handling for <code>Loader</code>, <code>Trainer</code>, and <code>Test</code> classes.</p>
+<p>This documentation format leverages tables and structured lists to clearly convey the script's capabilities, usage, and requirements, making it easier for users to understand and utilize the CLI for GAN training and testing.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../test/" class="btn btn-neutral float-left" title="Test"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../utils/" class="btn btn-neutral float-right" title="Utils">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../test/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../utils/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

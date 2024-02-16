@@ -1,0 +1,18 @@
+site_name: LSGAN - Least Squares Generative Adversarial Networks
+
+nav:
+  - Home: index.md
+  - DataLoader: dataloader.md
+  - Generator: generator.md
+  - Discriminator: discriminator.md
+  - Trainer: trainer.md
+  - Test: test.md
+  - Command Line: cli.md
+  - Utils: utils.md
+
+theme: readthedocs
+plugins:
+  - mkdocstrings
+
+extra_css:
+  - css/custom.css

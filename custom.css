@@ -1,0 +1,20 @@
+/* Change background color */
+.wy-body-for-nav {
+    background-color: #F5F5F5;
+    /* Example color */
+}
+
+/* Change text color */
+.md-content,
+.md-content h1,
+.md-content h2,
+.md-content h3 {
+    color: #333;
+    /* Example color */
+}
+
+/* Change link color */
+a {
+    color: #007C92;
+    /* Example scikit-learn link color */
+}
