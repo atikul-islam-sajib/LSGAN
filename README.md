@@ -57,7 +57,7 @@ python /path/to/LSGAN/src/cli.py --help
 | `--folder`        | A flag indicating whether to clean the training and model directories before starting. | N/A |
 
 
-## Training and Generating Images
+## Training and Generating Images - CLI
 
 #### Training the GAN Model with CUDA, MPS, CPU
 
@@ -71,7 +71,10 @@ python /path/to/LSGAN/src/cli.py --help
 | **CPU**    | **Generating Images with CPU**             | `python /content/LSGAN/clf.py --test --latent_space 100 --num_samples 20 --device cpu`                                                      | - `test`: Indicates testing mode <br> - `latent_space`: 100 <br> - `num_samples`: 20 <br> - `device`: cpu                     |
 
 
-## Core Script Usage With CUDA
+
+## Training and Generating Images - Importing the Modules
+
+#### Core Script Usage With CUDA
 
 ```python
 from src.dataloader import Loader
@@ -103,7 +106,7 @@ test.test()
 
 ```
 
-## Core Script Usage With MPS
+#### Core Script Usage With MPS
 
 ```python
 from src.dataloader import Loader
@@ -131,7 +134,7 @@ latent_space=100, num_samples=20, device="mps")
 test.test()
 ```
 
-## Core Script Usage With CPU
+#### Core Script Usage With CPU
 
 ```python
 from src.dataloader import Loader
