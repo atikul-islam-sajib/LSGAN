@@ -219,7 +219,7 @@ Image(filename='/content/LSGAN/outputs/final_output/fake_image.png')
 
 ## Documentation
 
-For detailed documentation on the implementation and usage, visit the [LSGAN Documentation](https://atikul-islam-sajib.github.io/GPDSG-deploy/).
+For detailed documentation on the implementation and usage, visit the [LSGAN Documentation](https://atikul-islam-sajib.github.io/LSGAN-deploy/).
 
 ## Contributing
 
