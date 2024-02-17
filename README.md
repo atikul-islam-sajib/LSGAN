@@ -164,11 +164,11 @@ test.test()
 
 ## Documentation
 
-For detailed documentation on the implementation and usage, visit the [LSGAN Documentation](https://atikul-islam-sajib.github.io/LSGAN-deploy/).
+For detailed documentation on the implementation and usage, visit the -> [LSGAN Documentation](https://atikul-islam-sajib.github.io/LSGAN-deploy/).
 
 ## Presentation Slide
 
-For detailed slide on the implementation and usafe, visit the[LSGAN Slides](https://github.com/atikul-islam-sajib/LSGAN/tree/main/presentation_side). 
+For detailed slide on the implementation and usafe, visit the -> [LSGAN Slides](https://github.com/atikul-islam-sajib/LSGAN/tree/main/presentation_side). 
 
 ## Contributing
 
