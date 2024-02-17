@@ -166,6 +166,10 @@ test.test()
 
 For detailed documentation on the implementation and usage, visit the [LSGAN Documentation](https://atikul-islam-sajib.github.io/LSGAN-deploy/).
 
+## Presentation Slide
+
+For detailed slide on the implementation and usafe, visit the [LSGAN Slide]([https://atikul-islam-sajib.github.io/LSGAN-deploy/](https://github.com/atikul-islam-sajib/LSGAN/blob/main/presentation_side/Presentation%20slide%20Alzheimer.pptx)). 
+
 ## Contributing
 
 Contributions to improve the project are welcome. Please follow the standard procedures for contributing to open-source projects.
